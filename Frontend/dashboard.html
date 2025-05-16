@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>www.salimwireless.com</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Sans+Pro:wght@600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top" class="h-full flex flex-col min-h-screen">
+  <main class="flex-grow p-4">
+    <article>
+	<script src="https://cdn.tailwindcss.com"></script>
+
+    <header class="border-b-orange-500 border-b-8 pb-4">
+        <nav class="flex justify-between">
+            <button id="menuBtn" class="px-4 py-4 rounded-r-md border-r text-6xl">☰</button>
+            <div class="flex justify-center">
+                <a href="./index.html" class="navbar-brand">
+<img src="https://www.google.com/s2/favicons?domain=www.salimwireless.com&sz=64"
+     alt="logo"
+     style="position: relative; top: 0.35em; width: 3em; height: 3em; border-radius: 50%;" />
+
+                </a>
+            </div>
+            <div id="headerNavbar" class="flex items-center ml-auto max-md:hidden">
+                <ul class="flex text-center text-[#00008B] text-[1.5em]">
+                    <li class="px-2 m-1"><a class="mx-4 px-4 py-2 hover:bg-[#99cc3e] hover: hover:text-white rounded-md"
+                            href="./index.html">HOME</a></li>
+                    <li class="px-2 m-1"><a class="mx-4 px-4 py-2 hover:bg-[#99cc3e] hover: hover:text-white rounded-md"
+                            href="#subscribe">NEWSLETTER</a></li>
+                    <li class="px-2 m-1"><a class="mx-4 px-4 py-2 hover:bg-[#99cc3e] hover: hover:text-white rounded-md"
+                            href="#ContactForm1">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="overlay" class="overlaycontainer fixed top-0 w-full h-full bg-[#00000080] opacity-0 -z-50"></div>
+    <div id="signupForm" class="overlaysignupform fixed -top-150 left-1/2 -translate-x-1/2 z-50 transition-all ease-in-out duration-300">
+        <div class="flex justify-center items-center px-4 h-screen w-screen">
+            <div class="relative bg-white border border-[#00000033] rounded-md w-[498px] flex flex-col overflow-y-auto">
+                <div class="p-4 flex justify-between items-center border-b">
+                    <button id="closeBtn" class="px-2 py-2 rounded-r-md border-r text-2xl">X</button>
+                </div>
+                <div class="p-4 flex flex-col text-[19.2px] font-bold text-[#3e6389]">
+<a href="./index.html" class="p-2 hover:text-[#343a40] hover:"><b>Home</b></a>
+<a href="./page.html" class="p-2 hover:text-[#343a40] hover:"><b>About</b></a>
+<a href="./page.html" class="p-2 hover:text-[#343a40] hover:"><b>Services</b></a>
+<a href="./page.html" class="p-2 hover:text-[#343a40] hover:"><b>Features</b></a>
+<a href="./page.html" class="p-2 hover:text-[#343a40] hover:"><b>Our Plans</b></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+<section>
+<div class="App bg-transparent flex flex-col items-center p-4">
+  <h2 id="welcome-text" class="text-3xl font-bold text-gray-800 mb-6">Loading your dashboard...</h2>
+  <button onclick="logout()" class="bg-blue-500 text-white p-2 rounded-md">Logout</button>
+  </section>
+  <p id="error-message" style="color:red;"></p>
+</div>
+  <script>
+    async function checkLogin() {
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:8000/auth/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Unauthorized');
+        }
+
+        const user = await response.json();
+        // Display user info
+        document.getElementById('welcome-text').innerText = `Welcome, ${user.username}!`;
+
+        // You can also display other user fields like email, name, etc.
+        // Example: document.body.innerHTML += `<p>Email: ${user.email}</p>`;
+      } catch (err) {
+        console.error('Login check failed:', err);
+        localStorage.removeItem('access_token');
+        window.location.href = 'login.html';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('access_token');
+      window.location.href = 'login.html';
+    }
+
+    checkLogin();
+  </script>
+</section>
+ </article>
+  </main>
+
+	<div class="footer">
+	  <div class="flex max-sm:flex-col text-white bg-[#111111] px-6">
+		<div class="flex-1 flex flex-col px-[20px]">
+		  <span class="w-1/5 font-bold pb-2 mb-3 border-b-2 border-b-green-500">Community Links</span>
+		  <a href="./page.html" class="footerlink" target="_blank" rel="noopener noreferrer">Career</a>
+		  <a href="./page.html" class="footerlink" target="_blank" rel="noopener noreferrer">Partners</a>
+		</div>
+		<div class="flex-1 flex flex-col px-[15px]">
+		  <span class="w-1/5 font-bold pb-2 mb-3 border-b-2 border-b-green-500">Contact Us</span>
+		  <a href="./page.html" class="footerlink" target="_blank" rel="noopener noreferrer">Email</a>
+		  <a href="./page.html" class="footerlink" target="_blank" rel="noopener noreferrer">Phone</a>
+		</div>
+		<div class="flex-1 flex flex-col px-[15px]">
+		  <span class="w-1/5 font-bold pb-2 mb-3 border-b-2 border-b-green-500">Contact Us</span>
+		  <a href="./page.html" class="footerlink" target="_blank" rel="noopener noreferrer">Email</a>
+		  <a href="./page.html" class="footerlink" target="_blank" rel="noopener noreferrer">Phone</a>
+		</div>
+	  </div>
+	</div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        &copy; 2025 <a href="#" class="copyright-link">SalimWireless.com</a>. All Right Reserved
+      </p>
+    </div>
+
+
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top  active" aria-label="Go To Top" data-go-top>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
