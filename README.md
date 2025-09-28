@@ -30,4 +30,6 @@ uvicorn main:app --reload
 
 The backend API will be available at: http://localhost:8000/ by default.
 
-
+![Alt text](https://github.com/salim943/Simple-Login-System-with-FastAPI-and-Vanilla-Js/blob/master/Screenshot%202025-05-29%20110910.png)
+![Alt text](https://github.com/salim943/Simple-Login-System-with-FastAPI-and-Vanilla-Js/blob/master/Screenshot%202025-05-29%20111228.png)
+![Alt text](https://github.com/salim943/Simple-Login-System-with-FastAPI-and-Vanilla-Js/blob/master/Screenshot%202025-05-29%20111308.png)
